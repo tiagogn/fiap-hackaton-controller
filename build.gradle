@@ -5,6 +5,7 @@ plugins {
 	id 'io.spring.dependency-management' version '1.1.7'
 	id 'org.jetbrains.kotlin.plugin.jpa' version '1.9.25'
 	id 'jacoco'
+	id "org.sonarqube" version "6.0.1.5171"
 }
 
 group = 'br.com.fiap.hackaton'
@@ -106,3 +107,22 @@ jacocoTestCoverageVerification {
 }
 
 check.dependsOn jacocoTestCoverageVerification
+
+sonar {
+	properties {
+		property "sonar.projectKey", "tiagogn_fiap-hackaton-controller"
+		property "sonar.organization", "fiap-lanchonete-soat8"
+		property "sonar.host.url", "https://sonarcloud.io"
+		property "sonar.exclusions", "**/build/**," +
+				"**/test/**,**/src/test/**," +
+				"**/src/main/resources/**," +
+				//"**/src/main/kotlin/br/com/fiap/hackaton/produton/adapters/config/**," +
+				"**/ControllerApplication*"
+		property "sonar.coverage.exclusions", "**/build/**," +
+				"**/test/**,**/src/test/**," +
+				"**/src/main/resources/**," +
+				//"src/main/kotlin/br/com/fiap/lanchonete/produto/adapters/input/rest/ErrorController.kt," +
+				//"**/src/main/kotlin/br/com/fiap/lanchonete/produto/adapters/output/**," +
+				"**/ControllerApplication*"
+	}
+}
