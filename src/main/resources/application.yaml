@@ -1,0 +1,25 @@
+spring:
+  application:
+    name: Controller
+  jpa:
+    hibernate:
+      ddl-auto: none
+  datasource:
+    driver-class-name: org.postgresql.Driver
+  flyway:
+    enabled: true
+  profiles:
+    active: ${springProfile:local}
+
+server:
+  servlet:
+    context-path: /controller
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"
+  endpoint:
+    health:
+      show-details: always
