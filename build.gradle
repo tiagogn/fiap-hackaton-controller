@@ -126,3 +126,10 @@ sonar {
 				"**/ControllerApplication*"
 	}
 }
+
+springBoot {
+	buildInfo()
+	jar {
+		enabled = false
+	}
+}
