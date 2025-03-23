@@ -127,9 +127,6 @@ sonar {
 	}
 }
 
-springBoot {
-	buildInfo()
-	jar {
-		enabled = false
-	}
+tasks.named("jar") {
+	enabled = false
 }

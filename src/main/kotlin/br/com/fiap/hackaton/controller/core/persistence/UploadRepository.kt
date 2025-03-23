@@ -1,4 +1,7 @@
 package br.com.fiap.hackaton.controller.core.persistence
 
-class UploadRepository {
+import br.com.fiap.hackaton.controller.core.domain.Upload
+
+interface UploadRepository {
+    fun save(upload: Upload) : Upload
 }

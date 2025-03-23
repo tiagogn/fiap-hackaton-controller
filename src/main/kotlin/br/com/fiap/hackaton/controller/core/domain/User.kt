@@ -1,7 +1,10 @@
 package br.com.fiap.hackaton.controller.core.domain
 
-data class Usuario (
-    val nome: String,
+import java.util.UUID
+
+data class User (
+    val id: UUID,
+    val name: String,
     val email: String,
     val cpf: String
 )
