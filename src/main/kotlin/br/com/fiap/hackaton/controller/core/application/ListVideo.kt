@@ -1,7 +1,7 @@
 package br.com.fiap.hackaton.controller.core.application
 
-import br.com.fiap.hackaton.controller.core.domain.Video
+import br.com.fiap.hackaton.controller.core.dto.VideoOutput
 
 interface ListVideo {
-    fun execute(): List<Video>
+    fun execute(cpf: String): List<VideoOutput>
 }

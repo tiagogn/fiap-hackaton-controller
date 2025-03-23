@@ -13,14 +13,14 @@ import org.springframework.web.multipart.MultipartFile
 @Controller
 @RequestMapping("/v1/upload")
 class UploadController(
-    private val salvarVideo: SaveVideo
+    private val saveVideo: SaveVideo
 ) {
 
     @PostMapping
     fun upload(@RequestHeader(name = "cpf", required = true) cpf: String,
                @RequestParam( name = "files", required = true ) files: List<MultipartFile>): ResponseEntity<Unit> {
 
-        val salvarVideoInputList = files.map { file ->
+        val saveVideoInputList = files.map { file ->
                 SaveVideoInput(
                     name = file.originalFilename!!,
                     size = file.size.toInt(),
@@ -30,7 +30,7 @@ class UploadController(
                 )
         }
 
-        salvarVideo.execute(cpf, salvarVideoInputList)
+        saveVideo.execute(cpf, saveVideoInputList)
         return ResponseEntity.ok().build()
     }
 }

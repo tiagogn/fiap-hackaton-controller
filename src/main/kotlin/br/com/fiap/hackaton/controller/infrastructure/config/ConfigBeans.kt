@@ -1,5 +1,7 @@
 package br.com.fiap.hackaton.controller.infrastructure.config
 
+import br.com.fiap.hackaton.controller.core.application.ListVideo
+import br.com.fiap.hackaton.controller.core.application.ListVideoImpl
 import br.com.fiap.hackaton.controller.core.application.SaveVideo
 import br.com.fiap.hackaton.controller.core.application.SaveVideoImpl
 import br.com.fiap.hackaton.controller.core.gateway.SendVideoMessageGateway
@@ -13,7 +15,7 @@ import org.springframework.context.annotation.Configuration
 class ConfigBeans {
 
     @Bean
-    fun salvarVideo(
+    fun saveVideo(
         userRepository: UserRepository,
         uploadRepository: UploadRepository,
         videoStorageGateway: VideoStorageGateway,
@@ -26,4 +28,16 @@ class ConfigBeans {
             sendVideoMessageGateway
         )
     }
+
+    @Bean
+    fun listVideo(
+        userRepository: UserRepository,
+        uploadRepository: UploadRepository
+    ): ListVideo {
+        return ListVideoImpl(
+            userRepository,
+            uploadRepository
+        )
+    }
+
 }
