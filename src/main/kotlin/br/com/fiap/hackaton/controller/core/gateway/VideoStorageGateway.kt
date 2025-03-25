@@ -1,7 +1,7 @@
 package br.com.fiap.hackaton.controller.core.gateway
 
-import br.com.fiap.hackaton.controller.core.domain.Video
+import br.com.fiap.hackaton.controller.core.domain.Upload
 
 interface VideoStorageGateway {
-    fun writeAll(files: List<Video>)
+    fun writeAll(upload: Upload)
 }

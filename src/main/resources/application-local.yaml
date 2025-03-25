@@ -3,3 +3,12 @@ spring:
     url: jdbc:postgresql://localhost:5432/videos
     username: admin
     password: password
+
+aws:
+  region: us-east-1
+  accessKey: test
+  secretKey: test
+  endpoint: http://localhost:4566
+  forcePathStyle: true
+  s3:
+    bucket: videos

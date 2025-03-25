@@ -8,8 +8,7 @@ import br.com.fiap.hackaton.controller.core.gateway.SendVideoMessageGateway
 import br.com.fiap.hackaton.controller.core.gateway.VideoStorageGateway
 import br.com.fiap.hackaton.controller.core.persistence.UploadRepository
 import br.com.fiap.hackaton.controller.core.persistence.UserRepository
-import java.time.LocalDate
-import java.util.*
+import java.io.ByteArrayInputStream
 
 class SaveVideoImpl(
     private val userRepository: UserRepository,
@@ -27,17 +26,16 @@ class SaveVideoImpl(
                 size = videoInput.size,
                 uri = "",
                 contentType = videoInput.contentType,
-                bytes = videoInput.bytes,
-                inputStream = videoInput.inputStream
+                byteArrayInputStream = ByteArrayInputStream(videoInput.bytes)
             )
         }
-
-        videoStorageGateway.writeAll(videos)
 
         val upload = Upload(
             user = user,
             videos = videos
         )
+
+        videoStorageGateway.writeAll(upload)
 
         uploadRepository.save(upload)
 

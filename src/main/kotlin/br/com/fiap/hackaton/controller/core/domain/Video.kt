@@ -1,7 +1,7 @@
 package br.com.fiap.hackaton.controller.core.domain
 
-import java.io.InputStream
-import java.util.UUID
+import java.io.ByteArrayInputStream
+import java.util.*
 
 data class Video (
     val id: UUID = UUID.randomUUID(),
@@ -9,6 +9,5 @@ data class Video (
     val size: Int,
     val contentType: String,
     val uri : String,
-    val bytes: ByteArray? = null,
-    val inputStream: InputStream? = null
+    val byteArrayInputStream: ByteArrayInputStream? = null
 )
