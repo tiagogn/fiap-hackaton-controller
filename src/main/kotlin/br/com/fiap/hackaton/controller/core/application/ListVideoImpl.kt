@@ -13,8 +13,8 @@ class ListVideoImpl(
 
         val user = userRepository.findByCpf(cpf) ?: throw UserNotFoundException("User $cpf not found")
 
-        val upload = uploadRepository.findByUser(user) ?: return emptyList()
+        val uploads = uploadRepository.findByUser(user)
 
-        return VideoOutput.toListVideoOutputList(upload)
+        return VideoOutput.toListVideoOutputList(uploads)
     }
 }

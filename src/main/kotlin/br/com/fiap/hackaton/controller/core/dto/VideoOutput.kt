@@ -25,5 +25,7 @@ data class VideoOutput (
                         uploadDdate = upload.creationDate
                     )
                 }
+
+        fun toListVideoOutputList(uploads: List<Upload>): List<VideoOutput> = uploads.flatMap { toListVideoOutputList(it) }
     }
 }

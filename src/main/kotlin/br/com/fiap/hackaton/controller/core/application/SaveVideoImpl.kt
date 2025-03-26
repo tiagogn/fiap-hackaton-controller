@@ -35,7 +35,7 @@ class SaveVideoImpl(
             videos = videos
         )
 
-        videoStorageGateway.writeAll(upload)
+        videoStorageGateway.writeAllBytes(upload)
 
         uploadRepository.save(upload)
 

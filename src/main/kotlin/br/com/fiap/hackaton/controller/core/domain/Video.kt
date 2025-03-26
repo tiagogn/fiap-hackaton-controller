@@ -9,5 +9,5 @@ data class Video (
     val size: Int,
     val contentType: String,
     val uri : String,
-    val byteArrayInputStream: ByteArrayInputStream? = null
+    var byteArrayInputStream: ByteArrayInputStream? = null
 )

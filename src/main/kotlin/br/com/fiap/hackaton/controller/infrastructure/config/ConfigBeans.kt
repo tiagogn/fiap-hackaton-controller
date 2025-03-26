@@ -1,9 +1,6 @@
 package br.com.fiap.hackaton.controller.infrastructure.config
 
-import br.com.fiap.hackaton.controller.core.application.ListVideo
-import br.com.fiap.hackaton.controller.core.application.ListVideoImpl
-import br.com.fiap.hackaton.controller.core.application.SaveVideo
-import br.com.fiap.hackaton.controller.core.application.SaveVideoImpl
+import br.com.fiap.hackaton.controller.core.application.*
 import br.com.fiap.hackaton.controller.core.gateway.SendVideoMessageGateway
 import br.com.fiap.hackaton.controller.core.gateway.VideoStorageGateway
 import br.com.fiap.hackaton.controller.core.persistence.UploadRepository
@@ -37,6 +34,17 @@ class ConfigBeans {
         return ListVideoImpl(
             userRepository,
             uploadRepository
+        )
+    }
+
+    @Bean
+    fun downloadVideo(
+        uploadRepository: UploadRepository,
+        videoStorageGateway: VideoStorageGateway
+    ): DownloadVideo {
+        return DownloadVideoImpl(
+            uploadRepository,
+            videoStorageGateway
         )
     }
 
