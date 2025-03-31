@@ -8,7 +8,7 @@ import software.amazon.awssdk.services.s3.S3Client
 import java.net.URI
 
 @Configuration
-class AWSConfig(
+class S3Config(
     @Value("\${aws.accessKey}")
     val awsAccessKey: String,
     @Value("\${aws.secretKey}")
