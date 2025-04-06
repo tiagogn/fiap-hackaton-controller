@@ -9,5 +9,13 @@ data class Video (
     val size: Int,
     val contentType: String,
     val uri : String,
-    var byteArrayInputStream: ByteArrayInputStream? = null
+    var byteArrayInputStream: ByteArrayInputStream? = null,
+    var status: StatusVideo = StatusVideo.PENDING
 )
+
+enum class StatusVideo {
+    PENDING,
+    PROCESSING,
+    PROCESSED,
+    ERROR
+}

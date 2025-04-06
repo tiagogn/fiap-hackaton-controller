@@ -8,4 +8,5 @@ data class Upload (
     val videos: List<Video> = listOf(),
     val user: User,
     val creationDate: LocalDateTime = LocalDateTime.now(),
+    val zipFile: String? = null,
 )
