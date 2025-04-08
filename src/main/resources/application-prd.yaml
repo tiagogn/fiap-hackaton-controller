@@ -1,0 +1,16 @@
+spring:
+  datasource:
+    url: jdbc:postgresql://${DB_HOST}:5432/${DB_NAME}
+    username: ${DB_USER}
+    password: ${DB_PASSWORD}
+
+aws:
+  region: ${AWS_REGION:us-east-1}
+  s3:
+    bucket: ${AWS_S3_BUCKET}
+  sqs:
+    queue-name: ${AWS_SQS_QUEUE_NAME}
+  sns:
+    topic-arn: ${AWS_SNS_TOPIC_ARN}
+
+
