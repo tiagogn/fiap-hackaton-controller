@@ -16,20 +16,33 @@ O objetivo do projeto é disponibilizar APIs processamento e download de videos:
 - download de videos
 
 ## Requisitos Funcionais e Técnicos
+
 Funcionalidades principais:
+
 •	Processamento simultâneo de múltiplos vídeos.
+
 •	Garantia de que nenhuma requisição seja perdida, mesmo em situações de pico.
+
 •	Implementação de autenticação por usuário e senha para maior segurança.
+
 •	Exibição de uma listagem com o status dos vídeos de cada usuário.
+
 •	Notificação ao usuário em caso de erro (via e-mail ou outros meios de comunicação).
+
 Requisitos técnicos:
+
 •	Persistência dos dados.
+
 •	Arquitetura escalável para suportar crescimento e maior demanda.
+
 •	Versionamento do projeto no GitHub.
+
 •	Garantia de qualidade por meio de testes bem estruturados.
+
 •	Implementação de CI/CD (Integração Contínua e Entrega Contínua).
 
 ## Entregáveis
+
 1.	Documentação: Descrição da arquitetura proposta e detalhes técnicos.
 2.	Scripts: Arquivos para criação do banco de dados e de outros recursos utilizados.
 3.	Repositório: Link do projeto versionado no GitHub.
