@@ -5,11 +5,15 @@ import br.com.fiap.hackaton.controller.core.gateway.SendVideoMessageGateway
 import br.com.fiap.hackaton.controller.core.gateway.VideoStorageGateway
 import br.com.fiap.hackaton.controller.core.persistence.UploadRepository
 import br.com.fiap.hackaton.controller.core.persistence.UserRepository
+import org.springframework.beans.factory.annotation.Value
 import org.springframework.context.annotation.Bean
 import org.springframework.context.annotation.Configuration
 
 @Configuration
 class ConfigBeans {
+
+    @Value("\${app.download-url}")
+    private lateinit var downloadUrl: String
 
     @Bean
     fun saveVideo(
@@ -33,7 +37,8 @@ class ConfigBeans {
     ): ListVideo {
         return ListVideoImpl(
             userRepository,
-            uploadRepository
+            uploadRepository,
+            downloadUrl
         )
     }
 

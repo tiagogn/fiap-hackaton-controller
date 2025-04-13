@@ -7,6 +7,5 @@ data class Upload (
     val id: UUID = UUID.randomUUID(),
     val videos: List<Video> = listOf(),
     val user: User,
-    val creationDate: LocalDateTime = LocalDateTime.now(),
-    val zipFile: String? = null,
+    val creationDate: LocalDateTime = LocalDateTime.now()
 )
