@@ -3,7 +3,8 @@
 ![Kotlin](https://img.shields.io/badge/Kotlin-1.5.31-blue)
 ![SpringBoot](https://img.shields.io/badge/SpringBoot-3.4-green)
 ![Docker](https://img.shields.io/badge/Docker-20.10-blue)
-![Postgres](https://img.shields.io/badge/Postgres-16-blue)
+![Postgres](https://img.shields.io/badge/Postgres-16-green)
+![Gradle](https://img.shields.io/badge/Gradle-8-green)
 
 O objetivo do projeto é disponibilizar APIs processamento e download de videos:
 
