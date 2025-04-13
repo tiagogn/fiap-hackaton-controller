@@ -26,6 +26,6 @@ class SendMessageGatewayImpl(
             .build()
 
         val result = sqsClient.sendMessage(request)
-        logger.info("Mensagem ${uploadId} enviada com ID: ${result.messageId()}")
+        logger.info("Mensagem $uploadId enviada com ID: ${result.messageId()}")
     }
 }
