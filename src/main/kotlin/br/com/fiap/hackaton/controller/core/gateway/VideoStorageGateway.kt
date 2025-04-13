@@ -5,5 +5,5 @@ import br.com.fiap.hackaton.controller.core.domain.Video
 
 interface VideoStorageGateway {
     fun writeAllBytes(upload: Upload)
-    fun readAllBytes(cpf: String, video: Video)
+    fun readAllBytes(video: Video)
 }

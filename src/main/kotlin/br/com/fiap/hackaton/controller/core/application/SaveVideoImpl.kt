@@ -25,7 +25,7 @@ class SaveVideoImpl(
                 name = videoInput.name,
                 size = videoInput.size,
                 contentType = videoInput.contentType,
-                byteArrayInputStream = ByteArrayInputStream(videoInput.bytes)
+                byteArrayInputStream = ByteArrayInputStream(videoInput.bytes),
             )
         }
 

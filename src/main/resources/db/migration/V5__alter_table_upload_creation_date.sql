@@ -1,0 +1,1 @@
+ALTER TABLE upload ALTER COLUMN creation_date TYPE TIMESTAMP;

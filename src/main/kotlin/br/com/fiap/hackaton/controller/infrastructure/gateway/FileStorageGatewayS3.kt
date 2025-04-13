@@ -27,7 +27,7 @@ class FileStorageGatewayS3(
             val fileSize = it.byteArrayInputStream?.available()?.toLong() ?: 0
             val putObjectRequest = PutObjectRequest.builder()
                 .bucket(bucketName)
-                .key("${upload.user.cpf}/${it.name}")
+                .key("${upload.id}/${it.name}")
                 .contentType(it.contentType)
                 .contentLength(fileSize)
                 .build()
@@ -37,8 +37,8 @@ class FileStorageGatewayS3(
         }
     }
 
-    override fun readAllBytes(cpf: String, video: Video) {
-        val key = "${cpf}/${video.zipFileName}"
+    override fun readAllBytes(video: Video) {
+        val key = "${video.uploadId}/${video.zipFileName}"
         video.byteArrayInputStream = downloadFile(key).inputStream()
     }
 

@@ -21,7 +21,7 @@ data class VideoEntity (
     @JdbcType(PostgreSQLEnumJdbcType::class)
     val status: StatusVideo = StatusVideo.PENDING,
     @Column(name = "zip_filename")
-    val zipFileName : String? = null
+    val zipFileName : String? = null,
 ) {
     fun toDomain() = br.com.fiap.hackaton.controller.core.domain.Video(
         id = id,
@@ -29,7 +29,8 @@ data class VideoEntity (
         size = size,
         contentType = contentType,
         status = status,
-        zipFileName = zipFileName
+        zipFileName = zipFileName,
+        uploadId = uploadEntity.id.toString()
     )
 
     companion object {

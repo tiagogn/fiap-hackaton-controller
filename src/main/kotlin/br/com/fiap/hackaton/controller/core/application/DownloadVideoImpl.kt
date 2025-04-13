@@ -14,7 +14,7 @@ class DownloadVideoImpl(
 
         val video = uploadRepository.findVideoByVideoId(videoId) ?: throw VideoNotFoundException("Video $videoId not found")
 
-        videoStorageGateway.readAllBytes(cpf, video)
+        videoStorageGateway.readAllBytes(video)
 
         video.byteArrayInputStream?.available()?.toLong() ?: throw VideoNotFoundException("Video $videoId not found")
 
