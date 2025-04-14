@@ -134,6 +134,16 @@ sonar {
 	}
 }
 
+springBoot {
+	buildInfo()
+}
+
+tasks.named("bootJar") {
+	layered{ }
+}
+
 tasks.named("jar") {
 	enabled = false
 }
+
+
