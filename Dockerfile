@@ -1,4 +1,4 @@
-FROM gradle:8-jdk17 AS build
+FROM openjdk:17-slim AS build
 
 ARG JAR_FILE=build/libs/*.jar
 COPY ${JAR_FILE} application.jar

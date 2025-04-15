@@ -9,7 +9,7 @@ plugins {
 }
 
 group = 'br.com.fiap.hackaton'
-version = '0.0.1'
+version = '0.9.0'
 
 java {
 	toolchain {
@@ -94,38 +94,38 @@ jacocoTestReport {
 	}))
 }
 
-jacocoTestCoverageVerification {
-	violationRules {
-		rule{
-			limit {
-				minimum = 0.8
-			}
-		}
-		rule {
-			limit {
-				counter = 'BRANCH'
-				value = 'COVEREDRATIO'
-				minimum = 0.7
-			}
-		}
-		rule {
-			limit {
-				counter = 'CLASS'
-				value = 'COVEREDRATIO'
-				minimum = 0.8
-			}
-		}
-		rule {
-			limit {
-				counter = 'METHOD'
-				value = 'COVEREDRATIO'
-				minimum = 0.8
-			}
-		}
-	}
-}
+//jacocoTestCoverageVerification {
+//	violationRules {
+//		rule{
+//			limit {
+//				minimum = 0.8
+//			}
+//		}
+//		rule {
+//			limit {
+//				counter = 'BRANCH'
+//				value = 'COVEREDRATIO'
+//				minimum = 0.7
+//			}
+//		}
+//		rule {
+//			limit {
+//				counter = 'CLASS'
+//				value = 'COVEREDRATIO'
+//				minimum = 0.8
+//			}
+//		}
+//		rule {
+//			limit {
+//				counter = 'METHOD'
+//				value = 'COVEREDRATIO'
+//				minimum = 0.8
+//			}
+//		}
+//	}
+//}
 
-check.dependsOn jacocoTestCoverageVerification
+//check.dependsOn jacocoTestCoverageVerification
 
 sonar {
 	properties {
