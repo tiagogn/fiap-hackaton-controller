@@ -17,7 +17,7 @@ CREATE TABLE "user"
     CONSTRAINT pk_user PRIMARY KEY (id)
 );
 
-insert into "user" (id, name, email, cpf, created_at, updated_at) values ('ad55ba5e-4eb4-4d6f-82da-7f22ec685f0e', 'John Doe', 'john.doe@email.com', '12345678901', now(), now());
+insert into "user" (id, name, email, cpf, created_at, updated_at) values ('ad55ba5e-4eb4-4d6f-82da-7f22ec685f0e', 'Eduardo Cadena', 'contatoeduardo.cadena@gmail.com', '12345678901', now(), now());
 
 CREATE TABLE video
 (

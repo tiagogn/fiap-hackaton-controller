@@ -154,3 +154,7 @@ sonar {
 tasks.named("jar") {
 	enabled = false
 }
+
+bootJar {
+	archiveFileName = "app.jar"
+}
