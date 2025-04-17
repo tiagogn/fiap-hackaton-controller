@@ -25,6 +25,8 @@ class FileStorageGatewayS3(
     override fun writeAllBytes(upload: Upload) {
         upload.videos.forEach{
             val fileSize = it.byteArrayInputStream?.available()?.toLong() ?: 0
+            if (fileSize == 0L)
+                return@forEach
             val putObjectRequest = PutObjectRequest.builder()
                 .bucket(bucketName)
                 .key("${upload.id}/${it.name}")

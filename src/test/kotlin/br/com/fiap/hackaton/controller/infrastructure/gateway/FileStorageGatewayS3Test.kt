@@ -19,7 +19,7 @@ import software.amazon.awssdk.services.s3.model.PutObjectRequest
 import software.amazon.awssdk.services.s3.model.PutObjectResponse
 import java.io.ByteArrayInputStream
 import java.lang.reflect.Method
-import java.util.UUID
+import java.util.*
 
 class FileStorageGatewayS3Test {
 
@@ -58,6 +58,29 @@ class FileStorageGatewayS3Test {
     }
 
     @Test
+    fun `should write all bytes to S3 with zero bytes`() {
+        val inputStream = null
+        val video = Video(
+            name = "video.mp4",
+            size = 0,
+            contentType = "video/mp4",
+            byteArrayInputStream = inputStream
+        )
+        val user = User(UUID.randomUUID(), "Test", "test@email.com", "12345678900")
+        val upload = Upload(user = user, videos = listOf(video))
+
+        every {
+            s3Client.putObject(any<PutObjectRequest>(), any<RequestBody>())
+        } returns mockk<PutObjectResponse>()
+
+        gateway.writeAllBytes(upload)
+
+        verify(exactly = 0) {
+            s3Client.putObject(any<PutObjectRequest>(), any<RequestBody>())
+        }
+    }
+
+    @Test
     fun `should read all bytes from S3`() {
         val video = Video(
             name = "video.mp4",
@@ -81,6 +104,17 @@ class FileStorageGatewayS3Test {
     @Test
     fun `downloadFile should return empty array when exception is thrown`() {
         every { s3Client.getObjectAsBytes(any<GetObjectRequest>()) } throws RuntimeException("Download failed")
+
+        val downloadFileMethod: Method = gateway.javaClass.getDeclaredMethod("downloadFile", String::class.java)
+        downloadFileMethod.isAccessible = true
+        val result = downloadFileMethod.invoke(gateway, "invalid-key") as ByteArray
+
+        assertArrayEquals(byteArrayOf(), result)
+    }
+
+    @Test
+    fun `downloadFile should return empty array when response is null`() {
+        every { s3Client.getObjectAsBytes(any<GetObjectRequest>()) } returns null
 
         val downloadFileMethod: Method = gateway.javaClass.getDeclaredMethod("downloadFile", String::class.java)
         downloadFileMethod.isAccessible = true
