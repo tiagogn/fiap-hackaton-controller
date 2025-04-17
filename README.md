@@ -5,6 +5,8 @@
 ![Docker](https://img.shields.io/badge/Docker-20.10-blue)
 ![Postgres](https://img.shields.io/badge/Postgres-16-green)
 ![Gradle](https://img.shields.io/badge/Gradle-8-green)
+[![Quality Gate Status](https://sonarcloud.io/api/project_badges/measure?project=tiagogn_fiap-hackaton-controller&metric=alert_status)](https://sonarcloud.io/summary/new_code?id=tiagogn_fiap-hackaton-controller)
+[![Coverage](https://sonarcloud.io/api/project_badges/measure?project=tiagogn_fiap-hackaton-controller&metric=coverage)](https://sonarcloud.io/summary/new_code?id=tiagogn_fiap-hackaton-controller)
 
 O objetivo do projeto é disponibilizar APIs processamento e download de videos:
 
