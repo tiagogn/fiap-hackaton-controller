@@ -9,7 +9,7 @@ plugins {
 }
 
 group = 'br.com.fiap.hackaton'
-version = '0.9.0'
+version = '1.0.0'
 
 java {
 	toolchain {
@@ -157,4 +157,10 @@ tasks.named("jar") {
 
 bootJar {
 	archiveFileName = "app.jar"
+}
+
+tasks.register('printVersion') {
+	doLast {
+		println project.version
+	}
 }
