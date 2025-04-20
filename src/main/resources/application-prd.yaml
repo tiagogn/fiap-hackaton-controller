@@ -16,21 +16,16 @@ spring:
         endpoint: ${AWS_S3_ENDPOINT:https://s3.amazonaws.com}
       sqs:
         endpoint: ${AWS_SQS_ENDPOINT:https://sqs.us-east-1.amazonaws.com}
-      ses: {}
 
 aws:
   region: ${AWS_REGION:us-east-1}
   accessKey: ${AWS_ACCESS_KEY_ID}
   secretKey: ${AWS_SECRET_ACCESS_KEY}
-  endpoint: ${AWS_S3_ENDPOINT:https://s3.amazonaws.com}
   forcePathStyle: ${AWS_S3_FORCE_PATH_STYLE:false}
   s3:
     bucket: ${AWS_S3_BUCKET}
-    video-bucket: ${AWS_S3_BUCKET}
   sqs:
     queue: ${AWS_SQS_QUEUE_NAME}
-  ses:
-    email-from: ${AWS_SES_EMAIL_FROM}
 
 app:
   download-url: ${APP_DOWNLOAD_URL}

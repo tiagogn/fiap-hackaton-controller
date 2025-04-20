@@ -15,7 +15,7 @@ class S3Config(
     val awsSecretKey: String,
     @Value("\${aws.region}")
     val awsRegion: String,
-    @Value("\${aws.endpoint}")
+    @Value("\${spring.cloud.aws.s3.endpoint}")
     val endpoint: String,
     @Value("\${aws.forcePathStyle}")
     val forcePathStyle: Boolean
