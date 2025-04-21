@@ -16,8 +16,8 @@ env:
   IMAGE_NAME: fiap-hackaton-controller
 
 jobs:
-  build:
-    name: Build and Push Image
+  build-and-push:
+    name: Build and Push Docker Image
     runs-on: ubuntu-latest
     outputs:
       version: ${{ steps.extract_version.outputs.version }}
@@ -59,24 +59,23 @@ jobs:
 
       - name: Extract version
         id: extract_version
-        run: |
-          VERSION=$(./gradlew -q printVersion | tail -n 1)
-          echo "version=$VERSION" >> $GITHUB_OUTPUT
-          echo "VERSION=$VERSION" >> $GITHUB_ENV
+        run: echo "version=$(./gradlew -q printVersion)" >> $GITHUB_OUTPUT
 
       - name: Build Docker image
-        run: docker build -t ${{ secrets.DOCKER_USERNAME }}/${{ env.IMAGE_NAME }}:${{ env.VERSION }} .
+        run: docker build -t ${{ secrets.DOCKER_USERNAME }}/${{ env.IMAGE_NAME }}:${{ steps.extract_version.outputs.version }} .
 
       - name: Push Docker image
-        run: docker push ${{ secrets.DOCKER_USERNAME }}/${{ env.IMAGE_NAME }}:${{ env.VERSION }}
+        run: docker push ${{ secrets.DOCKER_USERNAME }}/${{ env.IMAGE_NAME }}:${{ steps.extract_version.outputs.version }}
 
-  deploy:
+  deploy-to-ecs:
     name: Deploy to ECS
-    needs: build
     runs-on: ubuntu-latest
-    env:
-      VERSION: ${{ needs.build.outputs.version }}
+    needs: build-and-push
+    environment: production
     steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
       - name: Configure AWS credentials
         uses: aws-actions/configure-aws-credentials@v2
         with:
@@ -88,13 +87,20 @@ jobs:
         run: |
           aws ecs describe-task-definition \
             --task-definition $ECS_TASK_DEFINITION_NAME \
-            --query taskDefinition > task-definition.json
+            --query 'taskDefinition' \
+            --output json > task-definition.json
+
+      - name: Clean task definition
+        run: |
+          jq 'del(.taskDefinitionArn, .revision, .status, .requiresAttributes, .compatibilities, .registeredAt, .registeredBy)' \
+            task-definition.json > cleaned-task-definition.json
+
       - name: Update image in task definition
         run: |
-          jq --arg IMAGE "tiagogn/${IMAGE_NAME}:${VERSION}" \
+          jq --arg IMAGE "tiagogn/${{ env.IMAGE_NAME }}:${{ needs.build-and-push.outputs.version }}" \
              --arg NAME "$CONTAINER_NAME" \
              '(.containerDefinitions[] | select(.name == $NAME).image) |= $IMAGE' \
-             task-definition.json > new-task-def.json
+             cleaned-task-definition.json > new-task-def.json
 
       - name: Register new task definition
         id: register-task-def
