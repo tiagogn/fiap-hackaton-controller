@@ -89,10 +89,9 @@ jobs:
           aws ecs describe-task-definition \
             --task-definition $ECS_TASK_DEFINITION_NAME \
             --query taskDefinition > task-definition.json
-
       - name: Update image in task definition
         run: |
-          jq --arg IMAGE "${{ secrets.DOCKER_USERNAME }}/${{ env.IMAGE_NAME }}:${{ env.VERSION }}" \
+          jq --arg IMAGE "tiagogn/${IMAGE_NAME}:${VERSION}" \
              --arg NAME "$CONTAINER_NAME" \
              '(.containerDefinitions[] | select(.name == $NAME).image) |= $IMAGE' \
              task-definition.json > new-task-def.json
