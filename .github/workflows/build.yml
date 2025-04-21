@@ -64,8 +64,9 @@ jobs:
       - name: Download ECS task definition
         run: |
           aws ecs describe-task-definition \
-            --task-definition $ECS_TASK_DEFINITION \
-            --query taskDefinition > task-definition.json
+          --task-definition $ECS_TASK_DEFINITION \
+          --query taskDefinition \
+          > task-definition.json
   
       - name: Update image in task definition
         run: |
