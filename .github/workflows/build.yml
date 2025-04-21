@@ -11,7 +11,7 @@ env:
   AWS_REGION: us-east-1
   ECS_CLUSTER: my-ecs-cluster
   ECS_SERVICE: fiap-hackaton-controller-service
-  ECS_TASK_DEFINITION_NAME: fiap-hackaton-controller-task
+  ECS_TASK_DEFINITION_NAME: fiap-hackaton-controller
   CONTAINER_NAME: fiap-hackaton-controller
   IMAGE_NAME: fiap-hackaton-controller
 
