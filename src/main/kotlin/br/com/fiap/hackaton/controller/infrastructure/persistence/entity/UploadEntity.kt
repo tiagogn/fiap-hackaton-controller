@@ -16,15 +16,13 @@ data class UploadEntity (
     @JoinColumn(name = "user_id")
     @ManyToOne(fetch = FetchType.EAGER)
     val userEntity: UserEntity,
-    val creationDate: LocalDateTime,
-    val zipFile: String? = null,
+    val creationDate: LocalDateTime
 ){
     fun toDomain() = Upload(
         id = id,
         videos = videos.map { it.toDomain() },
         user = userEntity.toDomain(),
-        creationDate = creationDate,
-        zipFile = zipFile
+        creationDate = creationDate
     )
 
     fun isProcessed(): Boolean {
@@ -45,8 +43,7 @@ data class UploadEntity (
             val uploadEntity = UploadEntity(
                 id = upload.id,
                 userEntity = UserEntity.toEntity(upload.user),
-                creationDate = upload.creationDate,
-                zipFile = upload.zipFile
+                creationDate = upload.creationDate
             )
             val videos = upload.videos.map { VideoEntity.toEntity(it, uploadEntity) }
             uploadEntity.videos.addAll(videos)

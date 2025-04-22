@@ -9,9 +9,27 @@ services:
       - "5432:5432"
     volumes:
       - db-data:/var/lib/postgresql/data
+  localstack:
+    image: localstack/localstack:4.3.0-arm64
+    container_name: localstack
+    ports:
+      - "4566:4566"
+    environment:
+      - SERVICES=s3,sqs,ses
+      - DEBUG=1
+      - DATA_DIR=/tmp/localstack/data
+      - DEFAULT_REGION=us-east-1
+      - AWS_ACCESS_KEY_ID=test
+      - AWS_SECRET_ACCESS_KEY=test
+      - LOCALSTACK_AUTH_TOKEN=${LOCALSTACK_AUTH_TOKEN}
+    volumes:
+      - localstack_data:/tmp/localstack4
+      - /var/run/docker.sock:/var/run/docker.sock
+      - ./bootstrap:/docker-entrypoint-initaws.d
 
 volumes:
     db-data:
+    localstack_data:
 
 
 

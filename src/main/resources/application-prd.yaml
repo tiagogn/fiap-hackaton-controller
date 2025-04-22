@@ -4,13 +4,28 @@ spring:
     username: ${DB_USER}
     password: ${DB_PASSWORD}
 
+  cloud:
+    aws:
+      region:
+        static: ${AWS_REGION:us-east-1}
+      credentials:
+        access-key: ${AWS_ACCESS_KEY_ID}
+        secret-key: ${AWS_SECRET_ACCESS_KEY}
+      s3:
+        path-style-access-enabled: ${AWS_S3_FORCE_PATH_STYLE:false}
+        endpoint: ${AWS_S3_ENDPOINT:https://s3.amazonaws.com}
+      sqs:
+        endpoint: ${AWS_SQS_ENDPOINT:https://sqs.us-east-1.amazonaws.com}
+
 aws:
   region: ${AWS_REGION:us-east-1}
+  accessKey: ${AWS_ACCESS_KEY_ID}
+  secretKey: ${AWS_SECRET_ACCESS_KEY}
+  forcePathStyle: ${AWS_S3_FORCE_PATH_STYLE:false}
   s3:
     bucket: ${AWS_S3_BUCKET}
   sqs:
-    queue-name: ${AWS_SQS_QUEUE_NAME}
-  sns:
-    topic-arn: ${AWS_SNS_TOPIC_ARN}
+    queue: ${AWS_SQS_QUEUE_NAME}
 
-
+app:
+  download-url: ${APP_DOWNLOAD_URL}

@@ -3,7 +3,10 @@
 ![Kotlin](https://img.shields.io/badge/Kotlin-1.5.31-blue)
 ![SpringBoot](https://img.shields.io/badge/SpringBoot-3.4-green)
 ![Docker](https://img.shields.io/badge/Docker-20.10-blue)
-![Postgres](https://img.shields.io/badge/Postgres-16-blue)
+![Postgres](https://img.shields.io/badge/Postgres-16-green)
+![Gradle](https://img.shields.io/badge/Gradle-8-green)
+[![Quality Gate Status](https://sonarcloud.io/api/project_badges/measure?project=tiagogn_fiap-hackaton-controller&metric=alert_status)](https://sonarcloud.io/summary/new_code?id=tiagogn_fiap-hackaton-controller)
+[![Coverage](https://sonarcloud.io/api/project_badges/measure?project=tiagogn_fiap-hackaton-controller&metric=coverage)](https://sonarcloud.io/summary/new_code?id=tiagogn_fiap-hackaton-controller)
 
 ## Problema
 O Grupo 18 da Pós-Graduação em Arquitetura de Software da FIAP busca aprimorar seu projeto de processamento de imagens. Atualmente, o grupo conta com um protótipo simples capaz de processar um vídeo e gerar um arquivo .zip contendo as imagens extraídas. O objetivo agora é desenvolver uma versão mais robusta, permitindo o envio de vídeos e o download do arquivo .zip diretamente. Essa nova versão deverá incorporar conceitos como desenho de arquitetura, desenvolvimento de microsserviços, qualidade de software, mensageria e segurança.
@@ -92,8 +95,6 @@ Dentro do projeto, existe uma collection do Postman com os endpoints para teste.
 
 * Collection (hackaton/controller/Tech
   Challenge.postman_collection.json) [Download](Fiap%20-%20Lanchonete%20-%20Produto.postman_collection.json)
-* Environment (hackaton/controller/Tech
-  Challenge.postman_environment.json) [Download](Tech%20Challenge.postman_environment.json)
 
 Em cada endpoint, existe um exemplo de requisição para teste.
 
@@ -109,6 +110,7 @@ Ordem de execução dos endpoints:
 
 ## SonarQube
 Estamos utilizando duas badgets do Sonar para exibição dos quality gates.
+
 ## Link do Miro
 https://miro.com/app/board/uXjVK5FMZfo=/?share_link_id=705083359492
 

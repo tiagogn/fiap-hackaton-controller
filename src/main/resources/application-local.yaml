@@ -24,3 +24,6 @@ aws:
     queue: video-queue
   stack:
     auto: false
+
+app:
+  download-url: http://localhost:8080/controller/v1/download/

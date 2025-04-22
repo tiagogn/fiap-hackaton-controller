@@ -8,9 +8,10 @@ data class Video (
     val name: String,
     val size: Int,
     val contentType: String,
-    val uri : String,
     var byteArrayInputStream: ByteArrayInputStream? = null,
-    var status: StatusVideo = StatusVideo.PENDING
+    var status: StatusVideo = StatusVideo.PENDING,
+    var zipFileName: String? = null,
+    val uploadId: String? = null
 )
 
 enum class StatusVideo {

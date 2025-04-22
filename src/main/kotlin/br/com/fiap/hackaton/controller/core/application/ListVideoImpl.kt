@@ -8,6 +8,7 @@ import br.com.fiap.hackaton.controller.core.persistence.UserRepository
 class ListVideoImpl(
     private val userRepository: UserRepository,
     private val uploadRepository: UploadRepository,
+    private val downloadUrl: String
 ): ListVideo {
     override fun execute(cpf: String): List<VideoOutput> {
 
@@ -15,6 +16,6 @@ class ListVideoImpl(
 
         val uploads = uploadRepository.findByUser(user)
 
-        return VideoOutput.toListVideoOutputList(uploads)
+        return VideoOutput.toListVideoOutputList(uploads, downloadUrl)
     }
 }

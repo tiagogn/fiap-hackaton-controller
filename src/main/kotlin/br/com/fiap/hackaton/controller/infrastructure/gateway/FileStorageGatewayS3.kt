@@ -11,7 +11,6 @@ import software.amazon.awssdk.core.sync.RequestBody
 import software.amazon.awssdk.services.s3.S3Client
 import software.amazon.awssdk.services.s3.model.GetObjectRequest
 import software.amazon.awssdk.services.s3.model.GetObjectResponse
-import software.amazon.awssdk.services.s3.model.ListObjectsV2Request
 import software.amazon.awssdk.services.s3.model.PutObjectRequest
 
 @Component
@@ -26,9 +25,11 @@ class FileStorageGatewayS3(
     override fun writeAllBytes(upload: Upload) {
         upload.videos.forEach{
             val fileSize = it.byteArrayInputStream?.available()?.toLong() ?: 0
+            if (fileSize == 0L)
+                return@forEach
             val putObjectRequest = PutObjectRequest.builder()
                 .bucket(bucketName)
-                .key("${upload.user.cpf}/${it.name}")
+                .key("${upload.id}/${it.name}")
                 .contentType(it.contentType)
                 .contentLength(fileSize)
                 .build()
@@ -38,20 +39,12 @@ class FileStorageGatewayS3(
         }
     }
 
-    override fun readAllBytes(cpf: String, video: Video) {
-        val prefix = "${cpf}/"
-        val files = listFiles(prefix)
-
-        files.map {
-            val bytes = downloadFile(it)
-
-            video.name.equals(it, ignoreCase = true).let {
-                video.byteArrayInputStream = bytes.inputStream()
-            }
-        }
+    override fun readAllBytes(video: Video) {
+        val key = "${video.uploadId}/${video.zipFileName}"
+        video.byteArrayInputStream = downloadFile(key).inputStream()
     }
 
-    fun downloadFile(s3Key: String): ByteArray {
+    private fun downloadFile(s3Key: String): ByteArray {
         return try {
             val getObjectRequest = GetObjectRequest.builder()
                 .bucket(bucketName)
@@ -67,21 +60,4 @@ class FileStorageGatewayS3(
         }
     }
 
-    private fun listFiles(prefix: String): List<String> {
-        return try {
-            val listObjectsRequest = ListObjectsV2Request.builder()
-                .bucket(bucketName)
-                .prefix(prefix)
-                .build()
-
-            val response = s3Client.listObjectsV2(listObjectsRequest)
-
-            response.contents()
-                .map { it.key() }
-                .filter { it.endsWith("/").not() }
-        } catch (e: Exception) {
-            logger.error(e.message)
-            emptyList()
-        }
-    }
 }
