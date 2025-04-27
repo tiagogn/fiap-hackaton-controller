@@ -15,10 +15,10 @@ aws:
   region: us-east-1
   accessKey: test
   secretKey: test
-  endpoint: http://localhost:4566
   forcePathStyle: true
   s3:
     bucket: videos
+    endpoint: http://localhost:4566
   sqs:
     endpoint: http://localhost:4566
     queue: video-queue
